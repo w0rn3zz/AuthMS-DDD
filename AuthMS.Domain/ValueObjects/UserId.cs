@@ -1,3 +1,5 @@
+using AuthMS.Domain.Exceptions;
+
 namespace AuthMS.Domain.ValueObjects;
 
 public sealed class UserId : IEquatable<UserId>
@@ -7,7 +9,7 @@ public sealed class UserId : IEquatable<UserId>
     private UserId(Guid value)
     {
         if (value == Guid.Empty)
-            throw new ArgumentException("UserId cannot be empty");
+            throw new InvalidUserIdException("UserId cannot be empty.");
         
         Value = value;
     }

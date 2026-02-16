@@ -1,3 +1,4 @@
+using AuthMS.Domain.Exceptions;
 using AuthMS.Domain.ValueObjects;
 
 namespace AuthMS.Domain.Entities;
@@ -15,11 +16,11 @@ public class UserEntity
     private UserEntity(string name, string login, string passwordHash)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new ArgumentException("Name cannot be empty.", nameof(name));
+            throw new ValidationException(nameof(Name), "Name cannot be empty.");
         if (string.IsNullOrWhiteSpace(login))
-            throw new ArgumentException("Login cannot be empty.", nameof(login));
+            throw new InvalidLoginException("Login cannot be empty.");
         if (string.IsNullOrWhiteSpace(passwordHash))
-            throw new ArgumentException("Password cannot be empty.", nameof(passwordHash));
+            throw new InvalidPasswordHashException("Password hash cannot be empty.");
 
         Id = UserId.NewId();
         Name = name;
@@ -42,7 +43,7 @@ public class UserEntity
     {
         if (string.IsNullOrWhiteSpace(newPasswordHash))
         {
-            throw new ArgumentException("Password cannot be empty.", nameof(newPasswordHash));
+            throw new InvalidPasswordHashException("Password hash cannot be empty.");
         }
 
         PasswordHash = PasswordHash.FromHash(newPasswordHash);

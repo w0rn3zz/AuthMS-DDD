@@ -1,3 +1,5 @@
+using AuthMS.Domain.Exceptions;
+
 namespace AuthMS.Domain.ValueObjects;
 
 public sealed class PasswordHash : IEquatable<PasswordHash>
@@ -7,7 +9,7 @@ public sealed class PasswordHash : IEquatable<PasswordHash>
     private PasswordHash(string hashedValue)
     {
         if (string.IsNullOrWhiteSpace(hashedValue))
-            throw new ArgumentException("Password hash cannot be empty");
+            throw new InvalidPasswordHashException("Password hash cannot be empty.");
         
         Value = hashedValue;
     }

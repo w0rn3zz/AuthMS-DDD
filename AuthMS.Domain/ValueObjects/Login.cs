@@ -1,3 +1,5 @@
+using AuthMS.Domain.Exceptions;
+
 namespace AuthMS.Domain.ValueObjects;
 
 public sealed class Login : IEquatable<Login>
@@ -7,7 +9,7 @@ public sealed class Login : IEquatable<Login>
     private Login(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            throw new ArgumentException("Login cannot be empty");
+            throw new InvalidLoginException("Login cannot be empty.");
         
         Value = value;
     }
