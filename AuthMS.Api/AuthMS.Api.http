@@ -1,0 +1,6 @@
+@AuthMS.Api_HostAddress = http://localhost:5197
+
+GET {{AuthMS.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
