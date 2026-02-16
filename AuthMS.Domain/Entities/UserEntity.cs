@@ -16,7 +16,7 @@ public class UserEntity
     private UserEntity(string name, string login, string passwordHash)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new ValidationException(nameof(Name), "Name cannot be empty.");
+            throw new ValidationException(name);
         if (string.IsNullOrWhiteSpace(login))
             throw new InvalidLoginException("Login cannot be empty.");
         if (string.IsNullOrWhiteSpace(passwordHash))
@@ -32,11 +32,6 @@ public class UserEntity
     public static UserEntity Create(string name, string login, string passwordHash)
     {
         return new UserEntity(name, login, passwordHash);
-    }
-
-    public bool VerifyPassword(string password)
-    {
-        return PasswordHash.Value == password;
     }
 
     public void UpdatePassword(string newPasswordHash)

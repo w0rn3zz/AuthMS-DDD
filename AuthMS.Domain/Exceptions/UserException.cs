@@ -1,3 +1,5 @@
+using System.Diagnostics.Contracts;
+
 namespace AuthMS.Domain.Exceptions;
 
 public class UserNotFoundException: DomainException
@@ -17,10 +19,16 @@ public class UserAlreadyExsistsException : DomainException
     {
         Login = login;
     }
+}
 
-    public class InvalidCredentialsException: DomainException
+public class ValidationException: DomainException
+    {
+        public ValidationException(string name) 
+        : base($"Invalid name"){ }
+    }
+
+public class InvalidCredentialsException: DomainException
     {
         public InvalidCredentialsException(string login) 
         : base($"Invalid login or password"){ }
     }
-}
