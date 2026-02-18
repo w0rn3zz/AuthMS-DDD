@@ -10,11 +10,11 @@ public class UserNotFoundException: DomainException
         : base($"User with {field} '{value}' was not found.") {}
 }
 
-public class UserAlreadyExsistsException : DomainException
+public class UserAlreadyExistsException : DomainException
 {
     public string Login {get;}
 
-    public UserAlreadyExsistsException(string login) 
+    public UserAlreadyExistsException(string login) 
         : base($"User with login '{login}' already exists.")
     {
         Login = login;
