@@ -30,7 +30,9 @@ public class RegisterUserCommandHandler
         }
 
         var passwordHash = _passwordHasher.HashPassword(request.Password);
-        var user = UserEntity.Create(request.Name, request.Login, passwordHash);
+        var user = UserEntity.Create(request.Name, request.Login, passwordHash.Value);
+
+        await _userRepository.AddAsync(user, ct);
 
         return new RegisterUserResponse(
             user.Id.Value,
