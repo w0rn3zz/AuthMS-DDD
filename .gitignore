@@ -40,6 +40,12 @@ appsettings.*.json
 !appsettings.json
 !appsettings.Development.json
 
+# Secrets / local overrides
+appsettings.Local.json
+appsettings.Production.json
+*.pfx
+*.key
+
 # Build
 *.dll
 *.exe
